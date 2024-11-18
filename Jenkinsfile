@@ -7,8 +7,8 @@ pipeline {
         stage("Code Checkout"){ 
         steps{
             git(
-                url: "https://github.com/amigo-nishant/Capstone_Project_Clone.git",
-                branch: "main",
+                url: "https://github.com/PrashobVP/airbyte-AI.git",
+                branch: "master",
                 credentialsId: "jenkins-secret",
                 changelog: true,
                 poll: true
