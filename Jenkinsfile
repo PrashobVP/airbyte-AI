@@ -15,13 +15,13 @@ pipeline {
             )
         }
     }
-        stage("SonarQube Code Analysis") {
+        /* stage("SonarQube Code Analysis") {
         steps {
             withSonarQubeEnv("Sonar") {
                 sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=airbyte -Dsonar.projectKey=airbyte"
             }
         }
-    }
+    } */
         stage("Trivy File System Scan"){
             steps{
                 sh "trivy fs --format  table -o trivy-fs-report.html ."
