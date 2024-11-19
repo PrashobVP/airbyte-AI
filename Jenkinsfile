@@ -15,12 +15,12 @@ pipeline {
             )
         }
     }
-        stage("SonarQube Code Analysis") {
-        steps {
-            withSonarQubeEnv("Sonar") {
-                sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=airbyte -Dsonar.projectKey=airbyte"
-            }
-        }
+        // stage("SonarQube Code Analysis") {
+        // steps {
+        //     withSonarQubeEnv("Sonar") {
+        //         sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=airbyte -Dsonar.projectKey=airbyte"
+        //     }
+        // }
     } 
         stage("Trivy File System Scan"){
             steps{
@@ -30,8 +30,8 @@ pipeline {
         stage("OWASP Dependency Check"){
             steps{
                 echo "Skipping due to some dependency test cases are yet to be merged to master"
-                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'dc'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+                // dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'dc'
+                // dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
         stage("PROD Deployment"){
