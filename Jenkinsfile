@@ -21,19 +21,19 @@ pipeline {
         //         sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=airbyte -Dsonar.projectKey=airbyte"
         //     }
         // }
-    } 
+    //} 
         stage("Trivy File System Scan"){
             steps{
                 sh "trivy fs --format  table -o trivy-fs-report.html ."
             }
-        }
+    }
         stage("OWASP Dependency Check"){
             steps{
                 echo "Skipping due to some dependency test cases are yet to be merged to master"
                 // dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'dc'
                 // dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
-        }
+    }
         stage("PROD Deployment"){
             steps{
               sh "helm repo add airbyte https://airbytehq.github.io/helm-charts"
@@ -43,6 +43,13 @@ pipeline {
               echo "PROD Deployment successfull" 
             }
          }
-      }
-   }
+    }
+
+    post {
+        always {
+            dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+        }
+    }
+}
+
 
