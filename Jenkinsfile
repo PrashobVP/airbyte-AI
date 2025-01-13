@@ -34,15 +34,15 @@ pipeline {
                 // dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
     }
-        stage("PROD Deployment"){
-            steps{
-              sh "helm repo add airbyte https://airbytehq.github.io/helm-charts"
-              sh "helm repo update"
-              sh "helm upgrade --install airbyte airbyte/airbyte --dry-run --debug"
-              sh "helm upgrade --install airbyte airbyte/airbyte"
-              echo "PROD Deployment successfull" 
-            }
-         }
+        // stage("PROD Deployment"){
+        //     steps{
+        //       sh "helm repo add airbyte https://airbytehq.github.io/helm-charts"
+        //       sh "helm repo update"
+        //       sh "helm upgrade --install airbyte airbyte/airbyte --dry-run --debug"
+        //       sh "helm upgrade --install airbyte airbyte/airbyte"
+        //       echo "PROD Deployment successfull" 
+        //     }
+        //  }
     }
 
     post {
