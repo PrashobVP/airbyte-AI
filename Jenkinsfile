@@ -67,15 +67,15 @@ pipeline {
             }
         }
         
-        stage("PROD Deployment") {
-            steps {
-                sh "helm repo add airbyte https://airbytehq.github.io/helm-charts"
-                sh "helm repo update"
-                sh "helm upgrade --install airbyte airbyte/airbyte --dry-run --debug"
-                sh "helm upgrade --install airbyte airbyte/airbyte & pid=$!"
-                echo "kill $pid" | at now + 2 minutes
-                echo "PROD Deployment successful"
-            }
-        }
+        // stage("PROD Deployment") {
+        //     steps {
+        //         sh "helm repo add airbyte https://airbytehq.github.io/helm-charts"
+        //         sh "helm repo update"
+        //         sh "helm upgrade --install airbyte airbyte/airbyte --dry-run --debug"
+        //         sh "helm upgrade --install airbyte airbyte/airbyte & pid=$!"
+        //         echo "kill $pid" | at now + 2 minutes
+        //         echo "PROD Deployment successful"
+        //     }
+        // }
     }
 }
